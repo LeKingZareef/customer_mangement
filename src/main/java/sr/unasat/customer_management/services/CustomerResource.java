@@ -40,7 +40,8 @@ public class CustomerResource {
         return "Customer Updated!";
     }
 
-    @Path("/delete")
+    // TODO: Delete by id
+    @Path("/delete/{id}")
     @DELETE
     public String deleteCustomer(Customer customer) {
         customerDAO.delete(customer);
