@@ -4,6 +4,7 @@ import sr.unasat.customer_management.entities.Customer;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +38,34 @@ public class CustomerDAO {
         } catch (Exception e) {
             transaction.rollback();
         }
+    }
+
+    public void insert(Customer customer) {
+        entityManager.getTransaction().begin();
+        entityManager.persist(customer);
+        entityManager.getTransaction().commit();
+    }
+
+    public Customer select(long id) {
+        entityManager.getTransaction().begin();
+        String jpql = "select c from Customer c where c.id = :id";
+        TypedQuery<Customer> query = entityManager.createQuery(jpql, Customer.class);
+        query.setParameter("id", id);
+        Customer customer = query.getSingleResult();
+        entityManager.getTransaction().commit();
+        return customer;
+    }
+
+    public void update(Customer customer){
+        entityManager.getTransaction().begin();
+        entityManager.persist(customer);
+        entityManager.getTransaction().commit();
+    }
+
+    public void delete(Customer customer) {
+        entityManager.getTransaction().begin();
+        entityManager.remove(customer);
+        entityManager.getTransaction().commit();
     }
 
 }

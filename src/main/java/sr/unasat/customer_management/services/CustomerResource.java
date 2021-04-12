@@ -1,10 +1,8 @@
 package sr.unasat.customer_management.services;
 
-import com.sun.xml.internal.bind.v2.TODO;
 import sr.unasat.customer_management.DAO.CustomerDAO;
 import sr.unasat.customer_management.config.JPAconfig;
 import sr.unasat.customer_management.entities.Customer;
-import sr.unasat.customer_management.entities.User;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -18,15 +16,34 @@ public class CustomerResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Customer> retrieveAll() {
-        List<Customer> customerListList = customerDAO.findAll();
-        return customerListList;
+        List<Customer> customerList = customerDAO.findAll();
+        return customerList;
     }
 
-//    TODO: Insert
+    @Path("/insert")
+    @PUT
+    public String insertCustomer(Customer customer) {
+        customerDAO.insert(customer);
+        return "Customer Added!";
+    }
 
+    @Path("/update")
+    @POST
+    public String updateCustomer(Customer customerNew) {
+        Customer customer = customerDAO.select(customerNew.getId());
+        customer.setCompany(customerNew.getCompany());
+        customer.setEmail(customerNew.getEmail());
+        customer.setName(customerNew.getName());
+        customer.setPhone(customerNew.getPhone());
+        customer.setSexe(customerNew.getSexe());
+        customerDAO.update(customer);
+        return "Customer Updated!";
+    }
 
-//    TODO: Update
-
-
-//    TODO: Delete
+    @Path("/delete")
+    @DELETE
+    public String deleteCustomer(Customer customer) {
+        customerDAO.delete(customer);
+        return "Customer Deleted!";
+    }
 }
