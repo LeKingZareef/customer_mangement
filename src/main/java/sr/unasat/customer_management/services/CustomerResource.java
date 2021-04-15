@@ -1,5 +1,6 @@
 package sr.unasat.customer_management.services;
 
+import org.glassfish.jersey.internal.inject.Custom;
 import sr.unasat.customer_management.DAO.CustomerDAO;
 import sr.unasat.customer_management.config.JPAconfig;
 import sr.unasat.customer_management.entities.Customer;
@@ -40,10 +41,11 @@ public class CustomerResource {
         return "Customer Updated!";
     }
 
-    // TODO: Delete by id
-    @Path("/delete/{id}")
+
+    @Path("/delete")
     @DELETE
-    public String deleteCustomer(Customer customer) {
+    public String deleteCustomer(Customer customerNew) {
+        Customer customer = customerDAO.select(customerNew.getId());
         customerDAO.delete(customer);
         return "Customer Deleted!";
     }

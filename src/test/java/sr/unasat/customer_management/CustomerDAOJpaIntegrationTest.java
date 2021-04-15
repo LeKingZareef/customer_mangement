@@ -55,5 +55,18 @@ public class CustomerDAOJpaIntegrationTest {
         result.stream().forEach(System.out::println);
     }
 
+    @Test
+    public void delete() {
+//        Given
+        Customer customer = customerDAO.select(1);
+//        When
+        customerDAO.delete(customer);
+
+//        Then
+        System.out.println("Customer Deleted");
+
+
+    }
+
 
 }

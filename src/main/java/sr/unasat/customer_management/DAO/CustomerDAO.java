@@ -62,11 +62,12 @@ public class CustomerDAO {
         entityManager.getTransaction().commit();
     }
 
-    //TODO: Delete by id
     public void delete(Customer customer) {
         entityManager.getTransaction().begin();
         entityManager.remove(customer);
         entityManager.getTransaction().commit();
     }
+
+
 
 }
