@@ -1,6 +1,5 @@
 package sr.unasat.customer_management.services;
 
-import org.glassfish.jersey.internal.inject.Custom;
 import sr.unasat.customer_management.DAO.CustomerDAO;
 import sr.unasat.customer_management.config.JPAconfig;
 import sr.unasat.customer_management.entities.Customer;
@@ -17,8 +16,7 @@ public class CustomerResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Customer> retrieveAll() {
-        List<Customer> customerList = customerDAO.findAll();
-        return customerList;
+        return customerDAO.findAll();
     }
 
     @Path("/insert")
