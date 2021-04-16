@@ -12,17 +12,20 @@ public class Customer {
     private String sexe;
     private String phone;
     private String email;
+    private String id_number;
 
     public Customer(String name,
                     String company,
                     String sexe,
                     String phone,
-                    String email) {
+                    String email,
+                    String id_number) {
         this.name = name;
         this.company = company;
         this.sexe = sexe;
         this.phone = phone;
         this.email = email;
+        this.id_number = id_number;
     }
 
     public Customer () {
@@ -77,6 +80,14 @@ public class Customer {
         this.email = email;
     }
 
+    public String getId_number() {
+        return id_number;
+    }
+
+    public void setId_number(String id_number) {
+        this.id_number = id_number;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
@@ -86,6 +97,7 @@ public class Customer {
                 ", sexe='" + sexe + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
+                ", id_number='" + id_number + '\'' +
                 '}';
     }
 }

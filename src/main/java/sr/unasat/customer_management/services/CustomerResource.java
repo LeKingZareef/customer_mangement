@@ -35,6 +35,7 @@ public class CustomerResource {
         customer.setName(customerNew.getName());
         customer.setPhone(customerNew.getPhone());
         customer.setSexe(customerNew.getSexe());
+        customer.setId_number(customerNew.getId_number());
         customerDAO.update(customer);
         return "Customer Updated!";
     }
