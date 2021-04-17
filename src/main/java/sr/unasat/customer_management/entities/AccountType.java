@@ -6,7 +6,7 @@ import java.util.Date;
 @Entity
 public class AccountType {
     @Id
-    private Long gl_code;
+    private Long id;
     private String name;
     private String arab_name;
     private String occupation;
@@ -16,8 +16,8 @@ public class AccountType {
             columnDefinition="TIMESTAMP default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
     private Date created_on = new Date();
 
-    public AccountType(Long gl_code, String name, String arab_name, String occupation, Date created_on) {
-        this.gl_code = gl_code;
+    public AccountType(Long id, String name, String arab_name, String occupation, Date created_on) {
+        this.id = id;
         this.name = name;
         this.arab_name = arab_name;
         this.occupation = occupation;
@@ -34,12 +34,12 @@ public class AccountType {
     }
 
 
-    public Long getGl_code() {
-        return gl_code;
+    public Long getId() {
+        return id;
     }
 
-    public void setGl_code(Long gl_code) {
-        this.gl_code = gl_code;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -77,7 +77,7 @@ public class AccountType {
     @Override
     public String toString() {
         return "AccountType{" +
-                "gl_code=" + gl_code +
+                "gl_code=" + id +
                 ", name='" + name + '\'' +
                 ", arab_name='" + arab_name + '\'' +
                 ", occupation='" + occupation + '\'' +

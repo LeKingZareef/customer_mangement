@@ -31,7 +31,7 @@ public class AccountDAOTest {
         String currency = "USD";
 
         AccountType accountType = new AccountType();
-        accountType.setGl_code(110201L);
+        accountType.setId(110201L);
         accountType.setName("Tawaruq");
         accountType.setArab_name("Reverse Murabaha");
         accountType.setOccupation("Buy a Car");
@@ -75,7 +75,7 @@ public class AccountDAOTest {
         account.setStatus(status);
         account.setCreated_by(created_by);
 
-        accountDAO.addAccount(account);
+        accountDAO.save(account);
 
         //Then
 

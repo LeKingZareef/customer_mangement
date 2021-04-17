@@ -14,7 +14,7 @@ public class Account {
     private String currency;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "gl_code", nullable=false)
+    @JoinColumn(name = "account_id")
     private AccountType accountType;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
@@ -39,16 +39,15 @@ public class Account {
 
 
     public Account(AccountBuilder accountBuilder) {
-        this.currency = currency;
-        this.accountType = accountType;
-        this.customer = customer;
-        this.repaymentPlan = repaymentPlan;
-        this.amount = amount;
-        this.yield = yield;
-        this.status = status;
-        this.date_open = date_open;
-        this.date_closed = date_closed;
-        this.created_by = created_by;
+        this.currency = accountBuilder.currency;
+        this.accountType = accountBuilder.gl_code;
+        this.customer = accountBuilder.customer;
+        this.repaymentPlan = accountBuilder.repaymentPlan;
+        this.amount =accountBuilder.amount;
+        this.yield = accountBuilder.yield;
+        this.status = accountBuilder.status;
+        this.date_closed = accountBuilder.date_closed;
+        this.created_by = accountBuilder.created_by;
     }
 
     public Account() {
