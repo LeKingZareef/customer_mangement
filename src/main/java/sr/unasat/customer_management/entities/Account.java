@@ -1,5 +1,7 @@
 package sr.unasat.customer_management.entities;
 
+import sr.unasat.customer_management.builders.AccountBuilder;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -36,17 +38,7 @@ public class Account {
     private String created_by;
 
 
-    public Account(Long id,
-                   String currency,
-                   AccountType accountType,
-                   Customer customer,
-                   RepaymentPlan repaymentPlan,
-                   Integer amount,
-                   Integer yield,
-                   String status,
-                   Date date_open,
-                   String date_closed,
-                   String created_by) {
+    public Account(AccountBuilder accountBuilder) {
         this.id = id;
         this.currency = currency;
         this.accountType = accountType;
