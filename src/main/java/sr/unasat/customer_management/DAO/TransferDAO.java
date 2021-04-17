@@ -4,6 +4,7 @@ package sr.unasat.customer_management.DAO;
 
 import sr.unasat.customer_management.entities.Account;
 import sr.unasat.customer_management.entities.Transfer;
+import sr.unasat.customer_management.transfers.Type;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;

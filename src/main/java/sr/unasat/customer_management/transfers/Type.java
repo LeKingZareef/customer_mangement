@@ -1,22 +1,28 @@
 package sr.unasat.customer_management.transfers;
 
+import sr.unasat.customer_management.entities.AccountType;
+import sr.unasat.customer_management.entities.Customer;
+import sr.unasat.customer_management.entities.RepaymentPlan;
+import sr.unasat.customer_management.entities.Transfer;
+
 public abstract class Type {
-    String type;
-    String amount;
+    Customer customer;
+    AccountType accountType;
+    int amount;
+    String value_date;
+    String description;
+    RepaymentPlan repaymentPlan;
 
     Type() {
     }
 
-    public String transfers() {
-        String alert_type = paidType();
-        String alert_fee = fee();
-
-        return  alert_type+alert_fee;
+    public Transfer transfers() {
+        Transfer transferToAccount = transferToAccount(customer, accountType, amount,value_date,
+                description, repaymentPlan);
+        return transferToAccount;
     }
 
-    abstract String paidType();
-    abstract String fee();
-    abstract void transferToAccount();
-
+    public abstract Transfer transferToAccount(Customer customer, AccountType accountType, int amount, String value_date,
+                                               String description, RepaymentPlan repaymentPlan );
 
 }

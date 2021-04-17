@@ -1,10 +1,8 @@
 package sr.unasat.customer_management.services;
 
-import sr.unasat.customer_management.DAO.AccountDAO;
-import sr.unasat.customer_management.DAO.AccountTypeDAO;
-import sr.unasat.customer_management.DAO.CustomerDAO;
-import sr.unasat.customer_management.DAO.RepaymentPlanDAO;
+import sr.unasat.customer_management.DAO.*;
 import sr.unasat.customer_management.DTO.AccountDTO;
+import sr.unasat.customer_management.DTO.TransferDTO;
 import sr.unasat.customer_management.builders.AccountBuilder;
 import sr.unasat.customer_management.config.JPAconfig;
 import sr.unasat.customer_management.entities.Account;
@@ -25,6 +23,7 @@ public class AccountResource {
     private CustomerDAO customerDAO = new CustomerDAO(JPAconfig.getEntityManager());
     private AccountTypeDAO accountTypeDAO = new AccountTypeDAO(JPAconfig.getEntityManager());
     private RepaymentPlanDAO repaymentPlanDAO = new RepaymentPlanDAO(JPAconfig.getEntityManager());
+    private TransferDAO transferDAO = new TransferDAO(JPAconfig.getEntityManager());
 
     @Path("/list")
     @GET
@@ -65,17 +64,20 @@ public class AccountResource {
         return "Acount has been Added !";
     }
 
-//    @Path("/payment")
-//    @PUT
-//    public String paymentAccount(TransferDTO transferDTO) {
-//        Type type = null;
-//        if (transferDTO.getTransferType() == 1) {
-//            type = new Cash();
-//        } else if (transferDTO.getTransferType() == 2) {
-//            type = new InternetBanking();
-//        }
-//
-//        String transferspayment = type.transfers();
-//        return transferspayment;
-//    }
+    @Path("/payment")
+    @PUT
+    public String paymentAccount(TransferDTO transferDTO) {
+        AccountType accountType = accountTypeDAO.select(transferDTO.getAccountTypeID());
+        Customer customer = customerDAO.select(transferDTO.getCustomerID());
+        RepaymentPlan repaymentPlan = repaymentPlanDAO.select(transferDTO.getRepaymentID());
+        Type type = null;
+        if (transferDTO.getTransferType() == 1) {
+            type = new Cash(customer, accountType, transferDTO.getAmount(),transferDTO.getValue_date(), transferDTO.getDescription(),  repaymentPlan);
+        } else if (transferDTO.getTransferType() == 2) {
+            type = new InternetBanking(customer, accountType, transferDTO.getAmount(),transferDTO.getValue_date(), transferDTO.getDescription(), repaymentPlan);
+        }
+
+        transferDAO.save(type.transfers());
+        return "Payment is done";
+    }
 }

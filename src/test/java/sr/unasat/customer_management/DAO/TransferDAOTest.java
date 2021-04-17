@@ -6,6 +6,8 @@ import org.junit.Test;
 import sr.unasat.customer_management.builders.AccountBuilder;
 import sr.unasat.customer_management.config.JPAconfig;
 import sr.unasat.customer_management.entities.*;
+import sr.unasat.customer_management.transfers.Cash;
+import sr.unasat.customer_management.transfers.Type;
 
 import java.util.List;
 
@@ -48,7 +50,9 @@ public class TransferDAOTest {
         transfer.setDescription(description);
         transfer.setRepaymentPlan(repaymentPlan);
 
-        transferDAO.save(transfer);
+        Type type = new Cash(customer, accountType, 300, "2021-09-31", "Hello",  repaymentPlan);
+
+        transferDAO.save(type.transfers());
 
         List<Transfer> result = transferDAO.listTransfer();
         result.stream().forEach(System.out::println);
