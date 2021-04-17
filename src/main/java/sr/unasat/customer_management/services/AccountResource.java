@@ -11,10 +11,12 @@ import sr.unasat.customer_management.entities.Account;
 import sr.unasat.customer_management.entities.AccountType;
 import sr.unasat.customer_management.entities.Customer;
 import sr.unasat.customer_management.entities.RepaymentPlan;
+import sr.unasat.customer_management.transfers.Cash;
+import sr.unasat.customer_management.transfers.InternetBanking;
+import sr.unasat.customer_management.transfers.Type;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.text.ParseException;
 import java.util.List;
 
 @Path("/accounts")
@@ -62,4 +64,18 @@ public class AccountResource {
 
         return "Acount has been Added !";
     }
+
+//    @Path("/payment")
+//    @PUT
+//    public String paymentAccount(TransferDTO transferDTO) {
+//        Type type = null;
+//        if (transferDTO.getTransferType() == 1) {
+//            type = new Cash();
+//        } else if (transferDTO.getTransferType() == 2) {
+//            type = new InternetBanking();
+//        }
+//
+//        String transferspayment = type.transfers();
+//        return transferspayment;
+//    }
 }

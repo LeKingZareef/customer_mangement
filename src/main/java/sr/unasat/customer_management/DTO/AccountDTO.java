@@ -27,7 +27,8 @@ public class AccountDTO {
                       Integer yield,
                       String status,
                       String date_closed,
-                      String created_by) {
+                      String created_by,
+                      int transferType) {
         this.currency = currency;
         this.accountTypeID = accountTypeID;
         this.customerID = customerID;
@@ -69,7 +70,6 @@ public class AccountDTO {
     public String getStatus() {
         return status;
     }
-
 
     public String getDate_closed() {
         return date_closed;

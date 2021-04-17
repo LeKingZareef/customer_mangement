@@ -17,13 +17,6 @@ public class AccountDAO {
         this.entityManager = entityManager;
     }
 
-//    public void addAccount(Account account){
-//        entityManager.getTransaction().begin();
-//        entityManager.persist(account);
-//        entityManager.getTransaction().commit();
-//    }
-
-
     public List<Account> listAccounts() {
         entityManager.getTransaction().begin();
         String jpql = "SELECT a FROM Account a";
