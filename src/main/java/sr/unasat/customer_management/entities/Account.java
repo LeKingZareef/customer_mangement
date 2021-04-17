@@ -39,7 +39,6 @@ public class Account {
 
 
     public Account(AccountBuilder accountBuilder) {
-        this.id = id;
         this.currency = currency;
         this.accountType = accountType;
         this.customer = customer;
