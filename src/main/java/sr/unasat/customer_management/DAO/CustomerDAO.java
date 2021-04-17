@@ -40,11 +40,6 @@ public class CustomerDAO {
         }
     }
 
-    public void insert(Customer customer) {
-        entityManager.getTransaction().begin();
-        entityManager.persist(customer);
-        entityManager.getTransaction().commit();
-    }
 
     public Customer select(long id) {
         entityManager.getTransaction().begin();

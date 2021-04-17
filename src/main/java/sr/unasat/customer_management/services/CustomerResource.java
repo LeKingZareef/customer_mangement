@@ -19,10 +19,10 @@ public class CustomerResource {
         return customerDAO.findAll();
     }
 
-    @Path("/insert")
+    @Path("/save")
     @PUT
-    public String insertCustomer(Customer customer) {
-        customerDAO.insert(customer);
+    public String saveCustomer(Customer customer) {
+        customerDAO.save(customer);
         return "Customer Added!";
     }
 
