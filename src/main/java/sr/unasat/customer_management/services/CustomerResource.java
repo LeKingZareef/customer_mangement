@@ -43,8 +43,8 @@ public class CustomerResource {
 
     @Path("/delete")
     @DELETE
-    public String deleteCustomer(Customer customerNew) {
-        Customer customer = customerDAO.select(customerNew.getId());
+    public String deleteCustomer(long id) {
+        Customer customer = customerDAO.select(id);
         customerDAO.delete(customer);
         return "Customer Deleted!";
     }
