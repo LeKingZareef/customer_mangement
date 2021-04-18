@@ -13,19 +13,22 @@ public class Customer {
     private String phone;
     private String email;
     private String id_number;
+    private int type;
 
     public Customer(String name,
                     String company,
                     String sexe,
                     String phone,
                     String email,
-                    String id_number) {
+                    String id_number,
+                    int type) {
         this.name = name;
         this.company = company;
         this.sexe = sexe;
         this.phone = phone;
         this.email = email;
         this.id_number = id_number;
+        this.type = type;
     }
 
     public Customer () {
@@ -88,6 +91,14 @@ public class Customer {
         this.id_number = id_number;
     }
 
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
@@ -98,6 +109,7 @@ public class Customer {
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", id_number='" + id_number + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
 }

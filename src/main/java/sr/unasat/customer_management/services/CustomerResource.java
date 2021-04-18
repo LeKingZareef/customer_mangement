@@ -2,6 +2,9 @@ package sr.unasat.customer_management.services;
 
 import sr.unasat.customer_management.DAO.CustomerDAO;
 import sr.unasat.customer_management.config.JPAconfig;
+import sr.unasat.customer_management.customer_decorator.Joined;
+import sr.unasat.customer_management.customer_decorator.Minor;
+import sr.unasat.customer_management.customer_decorator.Normal;
 import sr.unasat.customer_management.entities.Customer;
 
 import javax.ws.rs.*;
@@ -22,20 +25,33 @@ public class CustomerResource {
     @Path("/save")
     @PUT
     public String saveCustomer(Customer customer) {
+        int customertype  = customer.getType();
+        sr.unasat.customer_management.customer_decorator.Customer Normal = new Normal();
+        if ( customertype == 1) {
+            Normal = new Minor(Normal);
+            Normal.getType();
+        } else  if (customertype == 2) {
+            Normal = new Joined(Normal);
+            Normal.getType();
+        } else {
+            Normal.getType();
+        }
+        customer.setType(customertype);
         customerDAO.save(customer);
         return "Customer Added!";
     }
 
     @Path("/update")
     @POST
-    public String updateCustomer(Customer customerNew) {
-        Customer customer = customerDAO.select(customerNew.getId());
-        customer.setCompany(customerNew.getCompany());
-        customer.setEmail(customerNew.getEmail());
-        customer.setName(customerNew.getName());
-        customer.setPhone(customerNew.getPhone());
-        customer.setSexe(customerNew.getSexe());
-        customer.setId_number(customerNew.getId_number());
+    public String updateCustomer(Customer customerUpdated) {
+        Customer customer = customerDAO.select(customerUpdated.getId());
+        customer.setCompany(customerUpdated.getCompany());
+        customer.setEmail(customerUpdated.getEmail());
+        customer.setName(customerUpdated.getName());
+        customer.setPhone(customerUpdated.getPhone());
+        customer.setSexe(customerUpdated.getSexe());
+        customer.setId_number(customerUpdated.getId_number());
+        customer.setType(customerUpdated.getType());
         customerDAO.update(customer);
         return "Customer Updated!";
     }
