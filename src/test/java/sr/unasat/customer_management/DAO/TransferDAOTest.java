@@ -36,7 +36,6 @@ public class TransferDAOTest {
     @Test
     public void save() {
         Customer customer = customerDAO.select(7);
-        AccountType accountType = accountTypeDAO.select(110201L);
         RepaymentPlan repaymentPlan = repaymentPlanDAO.select(1);
         int amount = 500;
         String value_date = "2021-12-01";
@@ -44,13 +43,12 @@ public class TransferDAOTest {
 
         Transfer transfer = new Transfer();
         transfer.setCustomer(customer);
-        transfer.setAccountType(accountType);
         transfer.setAmount(amount);
         transfer.setValue_date(value_date);
         transfer.setDescription(description);
         transfer.setRepaymentPlan(repaymentPlan);
 
-        Type type = new Cash(customer, accountType, 300, "2021-09-31", "Hello",  repaymentPlan);
+        Type type = new Cash(customer, 300, "2021-09-31", "Hello",  repaymentPlan);
 
         transferDAO.save(type.transfers());
 

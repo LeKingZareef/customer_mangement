@@ -9,28 +9,25 @@ public class InternetBanking extends Type{
     final double feeamount = 0;
 
     public InternetBanking (Customer customer,
-                            AccountType accountType,
                             int amount,
                             String value_date,
                             String description,
                             RepaymentPlan repaymentPlan) {
         this.customer = customer;
-        this.accountType = accountType;
         this.amount = amount;
         this.value_date = value_date;
         this.description = description;
         this.repaymentPlan = repaymentPlan;
     }
 
-    public InternetBanking(Customer customer, AccountType accountType, int amount, String description, RepaymentPlan repaymentPlan) {
+    public InternetBanking(Customer customer, int amount, String description, RepaymentPlan repaymentPlan) {
     }
 
     @Override
-    public Transfer transferToAccount(Customer customer, AccountType accountType, int amount, String value_date,
+    public Transfer transferToAccount(Customer customer, int amount, String value_date,
                                       String description, RepaymentPlan repaymentPlan) {
         Transfer transfer = new Transfer();
         transfer.setCustomer(customer);
-        transfer.setAccountType(accountType);
         transfer.setAmount(amount);
         transfer.setValue_date(value_date);
         transfer.setDescription(description);

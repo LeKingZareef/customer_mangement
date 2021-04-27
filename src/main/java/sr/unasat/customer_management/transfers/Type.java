@@ -7,7 +7,6 @@ import sr.unasat.customer_management.entities.Transfer;
 
 public abstract class Type {
     Customer customer;
-    AccountType accountType;
     int amount;
     String value_date;
     String description;
@@ -17,12 +16,12 @@ public abstract class Type {
     }
 
     public Transfer transfers() {
-        Transfer transferToAccount = transferToAccount(customer, accountType, amount,value_date,
+        Transfer transferToAccount = transferToAccount(customer, amount,value_date,
                 description, repaymentPlan);
         return transferToAccount;
     }
 
-    public abstract Transfer transferToAccount(Customer customer, AccountType accountType, int amount, String value_date,
+    public abstract Transfer transferToAccount(Customer customer, int amount, String value_date,
                                                String description, RepaymentPlan repaymentPlan );
 
 }

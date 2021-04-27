@@ -76,9 +76,9 @@ public class AccountResource {
         RepaymentPlan repaymentPlan = repaymentPlanDAO.select(transferDTO.getRepaymentID());
         Type type = null;
         if (transferDTO.getTransferType() == 1) {
-            type = new Cash(customer, accountType, transferDTO.getAmount(),transferDTO.getValue_date(), transferDTO.getDescription(),  repaymentPlan);
+            type = new Cash(customer, transferDTO.getAmount(),transferDTO.getValue_date(), transferDTO.getDescription(),  repaymentPlan);
         } else if (transferDTO.getTransferType() == 2) {
-            type = new InternetBanking(customer, accountType, transferDTO.getAmount(),transferDTO.getValue_date(), transferDTO.getDescription(), repaymentPlan);
+            type = new InternetBanking(customer,  transferDTO.getAmount(),transferDTO.getValue_date(), transferDTO.getDescription(), repaymentPlan);
         }
 
         transferDAO.save(type.transfers());

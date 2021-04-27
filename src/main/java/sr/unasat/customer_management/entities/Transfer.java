@@ -14,10 +14,6 @@ public class Transfer {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "account_id")
-    private AccountType accountType;
-
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "repayment_id", referencedColumnName = "id")
     private RepaymentPlan repaymentPlan;
@@ -47,7 +43,6 @@ public class Transfer {
                     String description,
                     RepaymentPlan repaymentPlan) {
         this.customer = customer;
-        this.accountType = accountType;
         this.amount = amount;
         this.value_date = value_date;
         this.description = description;
@@ -68,14 +63,6 @@ public class Transfer {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
-
-    public AccountType getAccountType() {
-        return accountType;
-    }
-
-    public void setAccountType(AccountType accountType) {
-        this.accountType = accountType;
     }
 
     public RepaymentPlan getRepaymentPlan() {
@@ -123,7 +110,6 @@ public class Transfer {
         return "Transfer{" +
                 "id=" + id +
                 ", customer=" + customer +
-                ", accountType=" + accountType +
                 ", repaymentPlan=" + repaymentPlan +
                 ", amount='" + amount + '\'' +
                 ", value_date='" + value_date + '\'' +
