@@ -5,10 +5,7 @@ import sr.unasat.customer_management.DTO.AccountDTO;
 import sr.unasat.customer_management.DTO.TransferDTO;
 import sr.unasat.customer_management.builders.AccountBuilder;
 import sr.unasat.customer_management.config.JPAconfig;
-import sr.unasat.customer_management.entities.Account;
-import sr.unasat.customer_management.entities.AccountType;
-import sr.unasat.customer_management.entities.Customer;
-import sr.unasat.customer_management.entities.RepaymentPlan;
+import sr.unasat.customer_management.entities.*;
 import sr.unasat.customer_management.transfers.Cash;
 import sr.unasat.customer_management.transfers.InternetBanking;
 import sr.unasat.customer_management.transfers.Type;
@@ -30,6 +27,13 @@ public class AccountResource {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Account> retrieveAll() {
         return accountDAO.listAccounts();
+    }
+
+    @Path("/paymentlist")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Transfer> retrieveAllTransfers() {
+        return transferDAO.listTransfer();
     }
 
     @Path("/delete")
