@@ -1,10 +1,12 @@
 package sr.unasat.customer_management.DAO;
 
 
+import sr.unasat.customer_management.entities.Account;
 import sr.unasat.customer_management.entities.AccountType;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import java.util.List;
 
 
 public class AccountTypeDAO {
@@ -12,6 +14,15 @@ public class AccountTypeDAO {
 
     public AccountTypeDAO(EntityManager entityManager) {
         this.entityManager = entityManager;
+    }
+
+    public List<AccountType> listTypes() {
+        entityManager.getTransaction().begin();
+        String jpql = "SELECT at FROM AccountType at";
+        TypedQuery<AccountType> query = entityManager.createQuery(jpql, AccountType.class);
+        List<AccountType> accountTypeList = query.getResultList();
+        entityManager.getTransaction().commit();
+        return accountTypeList;
     }
 
     public AccountType select(Long id) {
@@ -23,4 +34,5 @@ public class AccountTypeDAO {
         entityManager.getTransaction().commit();
         return accountType;
     }
+
 }

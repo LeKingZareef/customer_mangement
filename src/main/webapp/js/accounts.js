@@ -16,6 +16,7 @@ function getAccountsList() {
                         `
                             <tr>
                                 <td>${item.id}</td>
+                                <td>${item.repaymentPlan.id}</td>
                                 <td>${item.currency}</td>
                                 <td>${item.accountType.id}</td>
                                 <td>${item.accountType.occupation}</td>

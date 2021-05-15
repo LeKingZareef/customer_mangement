@@ -2,6 +2,7 @@ package sr.unasat.customer_management.services;
 
 import sr.unasat.customer_management.DAO.*;
 import sr.unasat.customer_management.DTO.AccountDTO;
+import sr.unasat.customer_management.DTO.RepaymentDTO;
 import sr.unasat.customer_management.DTO.TransferDTO;
 import sr.unasat.customer_management.builders.AccountBuilder;
 import sr.unasat.customer_management.config.JPAconfig;
@@ -29,11 +30,11 @@ public class AccountResource {
         return accountDAO.listAccounts();
     }
 
-    @Path("/paymentlist")
+    @Path("/type")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Transfer> retrieveAllTransfers() {
-        return transferDAO.listTransfer();
+    public List<AccountType> retrieveType() {
+        return accountTypeDAO.listTypes();
     }
 
     @Path("/delete")
@@ -65,7 +66,24 @@ public class AccountResource {
 
         accountDAO.save(accountAdd);
 
-        return "Acount has been Added !";
+        return "Account has been Added !";
+    }
+
+    @Path("/update")
+    @POST
+    public String updateAccount(Account accountUpdated) {
+        Account account = accountDAO.select(accountUpdated.getId());
+        account.setStatus(accountUpdated.getStatus());
+        accountDAO.update(account);
+        return  "Account has been updated";
+    }
+
+
+    @Path("/payments")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Transfer> retrieveAllTransfers() {
+        return transferDAO.listTransfer();
     }
 
     @Path("/payment")
@@ -84,4 +102,30 @@ public class AccountResource {
         transferDAO.save(type.transfers());
         return "Payment is done";
     }
+
+
+    @Path("/repayment")
+    @PUT
+    public String saveRepayment(RepaymentDTO repaymentDTO) {
+        AccountType accountType = accountTypeDAO.select(repaymentDTO.getAccountType());
+        RepaymentPlan repaymentPlan = new RepaymentPlan();
+        repaymentPlan.setAccountType(accountType);
+        repaymentPlan.setAmount(repaymentDTO.getAmount());
+        repaymentPlan.setStatus(repaymentDTO.getStatus());
+        repaymentPlan.setCurrency(repaymentDTO.getCurrency());
+        repaymentPlan.setMaturity_date(repaymentDTO.getMaturity_date());
+        repaymentPlan.setProfit_amount(repaymentDTO.getProfit_amount());
+        repaymentPlan.setValue_date(repaymentDTO.getValue_date());
+        repaymentPlan.setPlan_nbr(repaymentDTO.getPlan_nbr());
+        repaymentPlanDAO.save(repaymentPlan);
+        return "Repayment Plan Added!";
+    }
+
+    @Path("/repayment/last")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<RepaymentPlan> retrieveLastRepayment() {
+        return repaymentPlanDAO.selectLast();
+    }
+
 }

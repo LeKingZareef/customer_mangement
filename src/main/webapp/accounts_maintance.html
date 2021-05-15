@@ -80,7 +80,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Zareef Soetodrono</span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
@@ -121,55 +121,75 @@
                     <div class="card mb-4">
                         <div class="card-header">Loan Details</div>
                         <div class="card-body">
-                            <form>
+                            <form role="form" id="account" >
                                 <!-- Form Row-->
                                 <div class="form-row">
-                                    <!-- Form Group (first name)-->
-                                    <div class="form-group col-md-6">
-                                        <label class="small mb-1" for="inputFirstName">Customer name</label>
-                                        <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name">
-                                    </div>
-                                    <!-- Form Group (last name)-->
-                                    <div class="form-group col-md-6">
-                                        <label class="small mb-1" for="inputLastName">Customer CIF</label>
-                                        <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name">
+                                    <!-- Form Group (customer name)-->
+                                    <div class="form-group col-md-12">
+                                        <label class="small mb-1" for="inputFirstName">Customer</label>
+                                        <select class="custom-select" name="customer" id="customer" required>
+                                            <option disabled selected>Choose a Customer</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <!-- Form Group (loan type)-->
                                 <div class="form-group">
                                     <label class="small mb-1" for="inputFirstName">Loan Type</label>
-                                    <select class="custom-select" required>
-                                        <option value="">Choose Type</option>
-                                        <option value="1">Tawaruq</option>
-                                        <option value="2">Mudharaba</option>
-                                        <option value="3">Murabaha</option>
+                                    <select class="custom-select" name="accounttype" id="accounttype" required>
+                                        <option disabled selected>Choose Type</option>
                                     </select>
                                 </div>
                                 <!-- Form Row -->
                                 <div class="form-row">
                                     <!-- Form Group (loan amount)-->
-                                    <div class="form-group col-md-4">
-                                        <label class="small mb-1" for="inputOrgName">Amount</label>
-                                        <input class="form-control" id="inputOrgName" type="text" placeholder="Enter loan amount">
+                                    <div class="form-group col-md-3">
+                                        <label class="small mb-1" for="amount">Amount</label>
+                                        <input class="form-control" id="amount" name="amount" type="text" placeholder="Enter loan amount">
                                     </div>
                                     <!-- Form Group (yield)-->
-                                    <div class="form-group col-md-4">
-                                        <label class="small mb-1" for="inputLocation">Yield</label>
-                                        <input class="form-control" id="inputLocation" type="text" placeholder="Enter yield">
+                                    <div class="form-group col-md-3">
+                                        <label class="small mb-1" for="yield">Yield</label>
+                                        <input class="form-control" id="yield" name="yield" type="text" placeholder="Enter yield">
+                                    </div>
+                                    <!-- Form Group (yield)-->
+                                    <div class="form-group col-md-3">
+                                        <label class="small mb-1" for="profit_amount">Profit Amount</label>
+                                        <input class="form-control" id="profit_amount" name="profit_amount" type="text" placeholder="Profit Amount">
                                     </div>
                                     <!-- Form Group (currency)-->
-                                    <div class="form-group col-md-4">
-                                        <label class="small mb-1" for="inputLocation">Currency</label>
-                                        <select class="custom-select" required>
-                                            <option value="">Choose Currency</option>
-                                            <option value="1">SRD</option>
-                                            <option value="2">USD</option>
-                                            <option value="3">EURO</option>
+                                    <div class="form-group col-md-3">
+                                        <label class="small mb-1" for="currency">Currency</label>
+                                        <select class="custom-select" name="currency" id="currency" required>
+                                            <option disabled selected>Choose Currency</option>
+                                            <option value="SRD">SRD</option>
+                                            <option value="USD">USD</option>
+                                            <option value="EURO">EURO</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <!-- Form Group (value date)-->
+                                    <div class="form-group col-md-6">
+                                        <label class="small mb-1" for="value_date">Value Date</label>
+                                        <input class="form-control" id="value_date" name="value_date" type="text" placeholder="Value Date">
+                                    </div>
+                                    <!-- Form Group (maturity date)-->
+                                    <div class="form-group col-md-6">
+                                        <label class="small mb-1" for="maturity_date">Maturity Date</label>
+                                        <input class="form-control" id="maturity_date" name="maturity_date" type="text" placeholder="Maturity Date">
+                                    </div>
+                                </div>
+                                 <!-- Form Row-->
+                                 <div class="form-row">
+                                    <!-- Form Group (Plan Number)-->
+                                    <div class="form-group col-md-12">
+                                        <label class="small mb-1" for="plan_nbr">Plan Number</label>
+                                        <input class="form-control" id="plan_nbr" name="plan_nbr" type="text" placeholder="Plan Number">
                                         </select>
                                     </div>
                                 </div>
                                 <!-- Save changes button-->
-                                <button class="btn btn-primary" type="button">Save changes</button>
+                                <button class="btn btn-primary" type="submit">Save changes</button>
                             </form>
                         </div>
                     </div>
@@ -226,6 +246,7 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
+    <script src="js/accounts_main.js"></script>
 </body>
 
 </html>
@@ -235,5 +256,7 @@
         $.get("nav.html", function(data){
             $("#nav").html(data);
         })
+
+        getCustomers();
     }
 </script>

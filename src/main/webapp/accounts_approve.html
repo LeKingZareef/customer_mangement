@@ -80,7 +80,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Zareef Soetodrono</span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
@@ -117,7 +117,7 @@
 
                     <h1 class="h3 mb-4 text-gray-800">Approve Loans</h1>
 
-                    <div class="card shadow mb-4">
+                    <!-- <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Approvals</h6>
                         </div>
@@ -142,7 +142,34 @@
                                 </table>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
+
+                    <form role="form" id="approveaccount" >
+                        <!-- Form Row-->
+                        <div class="form-row">
+                            <!-- Form Group (customer name)-->
+                            <div class="form-group col-md-12">
+                                <label class="small mb-1" for="inputFirstName">Customer</label>
+                                <select class="custom-select" name="id" id="id" required>
+                                    <option disabled selected>Choose a Loan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Form Row -->
+                        <div class="form-row">
+                            <!-- Form Group (currency)-->
+                            <div class="form-group col-md-3">
+                                <label class="small mb-1" for="currency">Approve</label>
+                                <select class="custom-select" name="status" id="status" required>
+                                    <option disabled selected>Choose Status</option>
+                                    <option value="approve">Approve</option>
+                                    <option value="reject">Reject</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Save changes button-->
+                        <button class="btn btn-primary" type="submit">Save changes</button>
+                    </form>
 
                 </div>
                 <!-- /.container-fluid -->
